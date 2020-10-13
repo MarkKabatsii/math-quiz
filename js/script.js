@@ -16,6 +16,7 @@ const itemContainer = document.querySelector('.item-container');
 const finalTimeEl = document.querySelector('.final-time');
 const baseTimeEl = document.querySelector('.base-time');
 const penaltyTimeEl = document.querySelector('.penalty-time');
+const mistakeCountEl = document.querySelector('.mistake-count')
 const playAgainBtn = document.querySelector('.play-again');
 
 // Equations
@@ -23,7 +24,6 @@ let questionAmount = 0;
 let equationsArray = [];
 let playerGuessArray = [];
 let bestScoreArray = [];
-let mistakesCount = 0
 // Game Page
 let firstNumber = 0;
 let secondNumber = 0;
@@ -34,6 +34,7 @@ let timer;
 let timePlayed = 0;
 let baseTime = 0;
 let penaltyTime = 0;
+let mistakeCount = 0
 let finalTime = 0;
 let finalTimeDisplay = '0.0';
 // Scroll
@@ -110,6 +111,7 @@ function scoresToDOM() {
     baseTimeEl.textContent = `Base Time: ${baseTime}s`;
     penaltyTimeEl.textContent = `Penalty: +${penaltyTime}s`;
     finalTimeEl.textContent = `${finalTimeDisplay}s`;
+    mistakeCountEl.textContent = `Mistakes: ${mistakeCount}`
     updateBestScore();
     // Scroll to Top, go to Score Page
     itemContainer.scrollTo({ top: 0, behavior: 'instant' });
@@ -126,7 +128,8 @@ function checkTime() {
                 // Correct Guess, No Penalty
             } else {
                 // Incorrect Guess, Add Penalty
-                penaltyTime += 0.5;
+                penaltyTime += 7;
+                mistakeCount++
             }
         });
         finalTime = timePlayed + penaltyTime;
@@ -146,6 +149,7 @@ function startTimer() {
     timePlayed = 0;
     penaltyTime = 0;
     finalTime = 0;
+    mistakeCount = 0
     timer = setInterval(addTime, 100);
     gamePage.removeEventListener('click', startTimer);
 }
