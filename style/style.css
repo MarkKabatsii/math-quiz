@@ -28,7 +28,7 @@ body {
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
   width: 530px;
   /*height: 750px;*/
-  height: 91vh;
+  height: 85vh;
   position: relative;
   background: rgba(255, 255, 255, 0.9);
   user-select: none;
